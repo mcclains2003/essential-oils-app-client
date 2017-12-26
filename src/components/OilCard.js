@@ -3,16 +3,13 @@ import { Card, CardTitle, CardText,
  CardSubtitle, CardBody, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import ListItems from './ListItems';
-
 export const OilCard = ({ oil, deleteButton }) => (
     <Card key={ oil.id }>
         <CardBody>
             <CardTitle>{ oil.name }</CardTitle>
             <CardText>{ oil.description }</CardText>
             <CardSubtitle>Uses:</CardSubtitle>
-                <ListItems uses={ oil.uses } />
-            {/* <CardText>{ oil.uses }</CardText> */}
+            <CardText>{ oil.uses }</CardText>
             <CardSubtitle>Scent Profile:</CardSubtitle>
             <CardText>{ oil.fragrance_profile }</CardText>
             <CardSubtitle>Medical Properties:</CardSubtitle>
