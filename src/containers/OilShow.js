@@ -19,11 +19,19 @@ class OilShow extends Component {
     render() {
         const { oil } = this.props;
 
-        return (
-            <div>
-                <OilCard oil={ oil } deleteButton={ this.onClickDelete } />
-            </div>
-        );
+        if (!oil.errors) {
+            return (
+                <div>
+                    <OilCard oil={ oil } deleteButton={ this.onClickDelete } />
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <h1>Oil Not Found</h1>
+                </div>
+            )
+        }
     }
 }
 
