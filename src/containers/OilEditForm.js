@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+// import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import { fetchOil, editOil } from '../actions/oils';
 import { updateOilFormData } from '../actions/oilForm';
+import { OilFormTemplate } from '../components/OilFormTemplate';
 
 class OilEditForm extends Component {
 
@@ -41,7 +42,8 @@ class OilEditForm extends Component {
                     <h1>Edit Oil</h1>
                 </div>
                 <div>
-                    <Form onSubmit={ this.handleOnSubmit }>
+                    <OilFormTemplate oil={ this.props.oil } handleOnSubmit={ this.handleOnSubmit } handleOnChange={ this.handleOnChange }/>
+                    {/* <Form onSubmit={ this.handleOnSubmit }>
                         <FormGroup row>
                             <Label for="name" sm={2}>Name:</Label>
                             <Col sm={10}>
@@ -103,7 +105,7 @@ class OilEditForm extends Component {
                         </FormGroup>
 
                         <Button type="submit">Update Oil</Button>
-                    </Form>
+                    </Form> */}
                 </div>
             </div>
         )
