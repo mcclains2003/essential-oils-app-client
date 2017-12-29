@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+// import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import { updateOilFormData, resetOilForm } from '../actions/oilForm';
 import { createOil } from '../actions/oils';
+import { OilFormTemplate } from '../components/OilFormTemplate';
 
 class OilForm extends Component {
 
-    componentWillMount() {
-        this.props.resetOilForm();
-    }
+    // componentDidMount() {
+    //     this.props.resetOilForm();
+    // }
 
     handleOnChange = event => {
         const { name, value } = event.target
@@ -28,7 +29,13 @@ class OilForm extends Component {
     }
 
     render() {
-        const { name, description, uses, fragrance_profile, medical_properties } = this.props.oilFormData;
+        const initialState = {
+            name: '',
+            description: '',
+            uses: '',
+            fragrance_profile: '',
+            medical_properties: ''
+        }
 
         return (
             <div>
@@ -36,44 +43,10 @@ class OilForm extends Component {
                     <h1>New Oil Form</h1>
                 </div>
                 <div>
-                    <Form onSubmit={ this.handleOnSubmit }>
-                        <FormGroup row>
-                            <Label for="name" sm={2}>Name:</Label>
-                            <Col sm={10}>
-                                <Input type="text" name="name" value={ name } onChange={ this.handleOnChange } placeholder="Oil Name" />
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                            <Label for="description" sm={2}>Description:</Label>
-                            <Col sm={10}>
-                                <Input type="textarea" name="description" value={ description } onChange={ this.handleOnChange } placeholder="Oil Description" />
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                            <Label for="uses" sm={2}>Uses:</Label>
-                            <Col sm={10}>
-                                <Input type="textarea" name="uses" value={ uses } onChange={ this.handleOnChange } placeholder="Oil Uses" />
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                            <Label for="fragrance_profile" sm={2}>Fragrance:</Label>
-                            <Col sm={10}>
-                                <Input type="textarea" name="fragrance_profile" value={ fragrance_profile } onChange={ this.handleOnChange } placeholder="Oil Fragrance" />
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                            <Label for="medical_properties" sm={2}>Medical Properties:</Label>
-                            <Col sm={10}>
-                                <Input type="textarea" name="medical_properties" value={ medical_properties } onChange={ this.handleOnChange } placeholder="Oil Medical Properties" />
-                            </Col>
-                        </FormGroup>
-
-                        <Button type="submit">Add Oil</Button>
-                    </Form>
+                    <OilFormTemplate oil={ initialState } 
+                                     handleOnSubmit={ this.handleOnSubmit }
+                                     handleOnChange={ this.handleOnChange }
+                                     buttonText="Add Oil" />
                 </div>
             </div>
         )
