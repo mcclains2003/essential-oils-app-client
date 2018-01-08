@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import { fetchOil, editOil } from '../actions/oils';
@@ -8,13 +7,10 @@ import { OilFormTemplate } from '../components/OilFormTemplate';
 
 class OilEditForm extends Component {
 
-    componentWillMount() {
-        const { id } = this.props.match.params
-
-        this.props.fetchOil(id)
-    }
-
     componentDidMount() {
+        const { id } = this.props.match.params
+        
+        this.props.fetchOil(id)
         this.props.updateOilFormData(this.props.oil)
     }
 
