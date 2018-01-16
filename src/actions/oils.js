@@ -38,6 +38,13 @@ const destroyOil = oil => {
     }
 }
 
+const updateCount = oil => {
+    return {
+        type: 'INCREMENT',
+        oil
+    }
+}
+
 // ** Async Actions **
 export const fetchOils = () => {
     return dispatch => {
@@ -112,4 +119,24 @@ export const deleteOil = (oilID, routerHistory) => {
             })
             .catch(error => console.log(error));
     }
+}
+
+export const editCount = (oil) => {
+    const request = {
+        method: 'PUT',
+        body: JSON.stringify({ oil: oil }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    };
+
+    return dispatch => {
+        return fetch(`${API_URL}/oils/${oil.id}`, request)
+            .then(response => response.json())
+            .then(oil => {
+                dispatch(updateOil(oil))
+                dispatch(updateCount(oil));
+            })    
+            .catch(error => console.log(error));
+    };
 }

@@ -3,7 +3,8 @@ const initialState = {
     description: '',
     uses: '',
     fragrance_profile: '',
-    medical_properties: ''
+    medical_properties: '',
+    count: 0
 }
 
 export default (state = initialState, action) => {
